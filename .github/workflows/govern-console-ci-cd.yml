@@ -6,6 +6,8 @@ on:
     - 'master'
     - 'feature'
 
+env:
+  working-directory: packages/govern-console
 
 jobs:
   build-and-deploy-console:
