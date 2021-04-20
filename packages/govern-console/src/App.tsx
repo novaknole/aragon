@@ -10,7 +10,7 @@ function getLibrary(provider: any): Web3Provider {
   library.pollingInterval = 12000;
   return library;
 }
-
+const a = 5;
 export default function App() {
   return (
     <UseWalletProvider
