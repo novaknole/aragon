@@ -14,6 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     container: fleek/create-react-app:node-15
     name: builds and deploys console
+    defaults:
+      run:
+        working-directory: ${{env.working-directory}}
     steps:
       - uses: actions/checkout@v2
 
@@ -24,7 +27,6 @@ jobs:
 
       - name: Cache yarn modules
         uses: actions/cache@v2
-        working-directory: ${{env.working-directory}}
         with:
           path: '**/node_modules'
           key: yarn-${{ hashFiles('yarn.lock') }}
