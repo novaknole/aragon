@@ -1,10 +1,11 @@
 name: Govern-Console CI/CD
 on:
   push:
+    paths:
+    - 'packages/govern-console/**'
     branches:
     - 'develop'
     - 'master'
-    - 'feature'
 
 env:
   working-directory: packages/govern-console
@@ -14,6 +15,49 @@ jobs:
     runs-on: ubuntu-latest
     container: fleek/create-react-app:node-15
     name: builds and deploys console
+    defaults:
+      run:
+        working-directory: ${{env.working-directory}}
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Cache yarn modules
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: yarn-${{ hashFiles('yarn.lock') }}
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build the app
+        run: yarn build-storybook
+
+      - name: activate rinkeby's fleek
+        run: mv fleek/console.rinkeby.json .fleek.json
+        if: github.ref == 'refs/heads/develop'
+
+      - name: activate mainnet's fleek
+        run: mv fleek/console.mainnet.json .fleek.json
+        if: github.ref == 'refs/heads/master'
+
+      - name: builds and deploys console
+        id: deploy
+        uses: fleekhq/action-deploy@v1
+        with:
+          apiKey: ${{ secrets.FLEEK_API_KEY }}
+          workDir: ${{env.working-directory}}
+
+  build-and-deploy-storybook:
+    runs-on: ubuntu-latest
+    container: fleek/create-react-app:node-15
+    name: builds and deploys storybook
+    if: github.ref == 'refs/heads/develop'
     defaults:
       run:
         working-directory: ${{env.working-directory}}
@@ -30,5 +74,20 @@ jobs:
         with:
           path: '**/node_modules'
           key: yarn-${{ hashFiles('yarn.lock') }}
-        
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build the app
+        run: yarn build-storybook
+         
+      - name: activate rinkeby's fleek
+        run: mv fleek/storybook.json .fleek.json
+  
+      - name: builds and deploys storybook
+        id: deploy
+        uses: fleekhq/action-deploy@v1
+        with:
+          apiKey: ${{ secrets.FLEEK_API_KEY }}
+          workDir: ${{env.working-directory}}
 
