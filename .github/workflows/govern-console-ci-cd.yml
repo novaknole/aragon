@@ -1,8 +1,6 @@
 name: Govern-Console CI/CD
 on:
   push:
-    paths:
-    - 'packages/govern-console/**'
     branches:
     - 'develop'
     - 'master'
