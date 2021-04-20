@@ -32,12 +32,3 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
         working-directory: ${{env.working-directory}}
-
-      - name: Build the app
-        run: yarn build
-        working-directory: ${{env.working-directory}}
-
-      - name: activate rinkeby's fleek
-        run: mv fleek/console.rinkeby.json .fleek.json
-        if: github.ref == 'refs/heads/develop'
-        working-directory: ${{env.working-directory}}
