@@ -15,6 +15,7 @@
   "license": "GPL-3.0",
   "private": false,
   "dependencies": {
+    "@aragon/govern": "^1.0.0-beta.12",
     "@aragon/govern-contract-utils": "^1.0.0-beta.12",
     "@aragon/govern-core": "^1.0.0-beta.12",
     "@aragon/govern-token": "^1.0.0-beta.12",

@@ -16,6 +16,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
+    "@aragon/govern": "^1.0.0-beta.12",
     "@aragon/govern-contract-utils": "^1.0.0-beta.12",
     "@aragon/govern-token": "^1.0.0-beta.12"
   },

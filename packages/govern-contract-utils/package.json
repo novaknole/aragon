@@ -37,5 +37,8 @@
     "test": "hardhat test",
     "coverage": "hardhat coverage --temp artifacts",
     "prepublishOnly": "yarn clean && yarn compile && yarn test"
+  },
+  "dependencies": {
+    "@aragon/govern": "^1.0.0-beta.12"
   }
 }

@@ -20,8 +20,9 @@ import {
   PayloadType,
   ActionType,
 } from '@aragon/govern';
+
 // import {
-//   Proposal,
+//   Proposalfffff,
 //   ProposalParams,
 //   PayloadType,
 //   ActionType,
