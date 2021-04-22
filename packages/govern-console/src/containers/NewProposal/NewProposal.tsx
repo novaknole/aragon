@@ -22,7 +22,7 @@ import {
 } from '@aragon/govern';
 
 // import {
-//   Proposalfffff,
+//   Proposalffffff,
 //   ProposalParams,
 //   PayloadType,
 //   ActionType,

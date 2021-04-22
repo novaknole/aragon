@@ -27,8 +27,8 @@ jobs:
         with:
           node-version: 12
 
-      - name: Install dependencies for govern
-        run: cd ../govern && yarn install --frozen-lockfile && yarn build
+      # - name: Install dependencies for govern
+      #   run: cd ../govern && yarn install --frozen-lockfile && yarn build
   
       - name: Install dependencies
         run: yarn install --frozen-lockfile
