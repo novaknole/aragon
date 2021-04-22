@@ -84,6 +84,9 @@ export class Proposal {
     this.contract = new Contract(queueAddress, abi, signer)
   }
 
+  
+  
+
   /**
    * Create and schedule a proposal
    *
@@ -98,6 +101,10 @@ export class Proposal {
     proposalWithNonce.payload.nonce = nonce.add(1)
     const result = this.contract.schedule(proposalWithNonce)
     return result
+  }
+
+  oeyeah():any {
+    console.log("good");
   }
 
   /**
